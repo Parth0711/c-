@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+
+@*Index page css*@ 
+<head> 
+    <style>
+        
+        img {
+            float: left;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">search</div>
+        <div class="panel-body" style="text-align:center">
+            @using (Ajax.BeginForm(" MotorBikeSearch", "Home",
+                new AjaxOptions
+                {
+                    InsertionMode = InsertionMode.Replace,
+                    HttpMethod = "GET",
+                    OnFailure = "searchFailed",
+                    LoadingElementId = "ajax-loader",
+                    UpdateTargetId = "searchresults",
+                }))
+            {
+                <input type="text" name="q" />
+
+                <input type="submit" value="search" />
+                <img id="ajax-loader" src="@Url.Content("~/Images/ajax-loader.gif")" style="display:none" />
+            }
+            <div id="searchresults"></div>
+        </div>
+    </div>
+
+
+
+    <img src="~/image/MC-enthusiasts-logo.png" alt="logo" width="280" height="260">
+    <div class="jumbotron">
+        <h2><center>Motorcycle Inventory Tracker</center></h2>
+        <h2><center>Welcome to our website</center></h2>
+        <h3><center>Click Motorcycle Details for cool Motorcycles</center></h3>
+    </div>
+
+
+    <div class="row body-cont">
+    </div>
+</body>

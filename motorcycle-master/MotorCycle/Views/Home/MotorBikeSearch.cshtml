@@ -1,0 +1,28 @@
+﻿@model IEnumerable<MotorCycle.Models.MotorBike>
+
+@{
+    ViewBag.Title = "search Results";
+}
+
+<h2>MotorBikeSearch</h2>
+
+
+<table class="table">
+   
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MotorName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MakeYear)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Company)
+        </td>
+    
+    </tr>
+}
+
+</table>

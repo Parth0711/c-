@@ -1,0 +1,78 @@
+﻿@model IEnumerable<MotorCycle.Models.MotorBike>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+    <h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+
+
+    @*<div class="form-group">
+            <label>Search</label>
+            <input class="form-control" id="searchTxt" name="Search" value="@Model." />
+        </div>*@
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MotorName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MakeYear)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Company)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MotorName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MakeYear)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Company)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    <script>
+
+
+    $("#searchBtn").click(function () {
+		var searchValue = $("#searchTxt").val();
+
+		$.ajax({
+			url: '@Url.Action("ProductTable", "Product")',
+			data: {
+				search: searchValue
+			}
+		})
+        .done(function (response) {
+        	$("#tableContiner").html(response);
+        })
+        .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+        	alert("FAIL");
+        });
+	});
+    </script>
+
+
+  
